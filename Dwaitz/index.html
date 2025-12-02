@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dwaitz | Professional Web Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #000;
+      --bg-light: #fff;
+      --text-dark: #000;
+      --text-light: #fff;
+      --border: #e5e5e5;
+      --accent: #000;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--text-light);
+    }
+
+    h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin: 2rem 0 1.25rem;
+      color: var(--text-light);
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--text-light);
+      opacity: 0.3;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text-light);
+    }
+
+    p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 1rem auto;
+      opacity: 0.85;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      margin: 0.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--text-light);
+      color: var(--text-light);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(4px);
+      z-index: 1001;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--text-light);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Mobile Toggle */
+    #menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 30px;
+      height: 21px;
+      justify-content: space-between;
+    }
+
+    .bar {
+      height: 3px;
+      width: 100%;
+      background-color: var(--text-light);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ✅ Mobile-Optimized Project Cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+      width: 100%;
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--bg-light);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      color: var(--text-dark);
+      transform: perspective(800px) rotateX(2deg) rotateY(0deg);
+      will-change: transform;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.3) 100%);
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      transform: perspective(800px) rotateX(0deg) rotateY(2deg) translateY(-8px) scale(1.01);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-content {
+      padding: 1.75rem 1.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .project-content h3 {
+      color: var(--text-dark);
+      margin: 0 0 0.75rem;
+      font-size: 1.4rem;
+    }
+
+    .project-content p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 1.25rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .visit-site-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.6rem;
+      background: var(--accent);
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      margin: 0.5rem 0;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .visit-site-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* ✅ Uniform Services Cards (3 items) */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+      width: 100%;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-light);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: var(--transition);
+      transform: translateY(0);
+      position: relative;
+      overflow: hidden;
+      height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px) scale(1.015);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .service-icon {
+      font-size: 2.2rem;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 18px;
+      margin: 0 auto 1.25rem;
+      color: var(--text-light);
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .service-card p {
+      font-size: 1rem;
+      opacity: 0.85;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .service-cta {
+      display: inline-block;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: auto;
+      position: relative;
+      padding-right: 1.25rem;
+    }
+
+    .service-cta::after {
+      content: '→';
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: var(--transition);
+    }
+
+    .service-cta:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    #contact h2,
+    #contact h3 {
+      color: var(--text-dark);
+    }
+
+    #contact p,
+    #contact .hero-sub {
+      color: #333;
+      opacity: 1;
+    }
+
+    .contact-info p {
+      color: var(--text-dark);
+      opacity: 1;
+    }
+
+    .contact-info i {
+      color: var(--text-dark);
+    }
+
+    .social-links a {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-dark);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.5rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--text-dark);
+      color: var(--text-light);
+      transform: translateY(-3px);
+    }
+
+    /* Chatbot */
+    #chatbot-toggle {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      font-size: 1.25rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      z-index: 1002;
+      transition: var(--transition);
+    }
+
+    #chatbot-toggle:hover {
+      transform: scale(1.12) rotate(12deg);
+    }
+
+    #chatbot {
+      position: fixed;
+      bottom: 90px;
+      right: 2rem;
+      width: 350px;
+      height: 500px;
+      background-color: var(--bg-light);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      display: none;
+      flex-direction: column;
+      z-index: 1003;
+      color: var(--text-dark);
+    }
+
+    #chat-header {
+      padding: 1rem;
+      background-color: #f8f9fa;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    #chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .message {
+      max-width: 80%;
+      padding: 0.875rem 1.25rem;
+      border-radius: 18px;
+      position: relative;
+      animation: fadeIn 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #f1f3f5;
+      color: #222;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: var(--accent);
+      color: var(--text-light);
+    }
+
+    .typing {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #666;
+      border-radius: 50%;
+      margin-left: 4px;
+      animation: typing 1.4s infinite ease-in-out;
+    }
+
+    @keyframes typing {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    #chat-input {
+      display: flex;
+      padding: 0.875rem;
+      background-color: #f8f9fa;
+      border-top: 1px solid var(--border);
+    }
+
+    #chat-input input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      background: white;
+      color: #333;
+      outline: none;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #chat-input button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 📱 Mobile Responsive — Projects & Layout */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--bg-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        gap: 1.5rem;
+        transition: left 0.4s ease;
+        z-index: 1000;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      #menu-toggle {
+        display: flex;
+      }
+
+      #menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+      #menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+      }
+      #menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.8rem; }
+      h3 { font-size: 1.4rem; }
+      section { padding: 2.5rem 1.25rem; }
+
+      p { font-size: 1rem; }
+
+      /* ✅ MOBILE PROJECTS: Single column, full-width */
+      .journey-container {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.75rem;
+      }
+
+      .project-card {
+        border-radius: 20px;
+      }
+
+      .project-img {
+        height: 240px; /* taller for mobile */
+      }
+
+      .project-content {
+        padding: 1.5rem 1.25rem;
+      }
+
+      .project-content h3 {
+        font-size: 1.35rem;
+      }
+
+      .project-content p {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .visit-site-btn {
+        padding: 0.8rem 1.75rem;
+        font-size: 1.05rem;
+      }
+
+      /* Services */
+      .service-card {
+        height: auto;
+        padding: 1.75rem;
+      }
+
+      .service-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home" class="logo">Dwaitz</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#journey">Our Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div id="menu-toggle">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
+
+  <div id="chatbot-toggle" aria-label="Open chat"><i class="fas fa-robot"></i></div>
+
+  <!-- Home Section -->
+  <section id="home">
+    <div class="container"><br><br><br><br><br>
+      <h1>Dwaitz — We Build Responsive Front-End Websites with SEO</h1>
+      <p class="hero-sub">A JavaScript-Driven Web Development Agency delivering modern, high-performance websites.</p>
+      <a href="#services" class="btn btn-outline">View Our Services</a>
+    </div>
+  </section>
+
+  <!-- Our Journey & Projects Section -->
+  <section id="journey">
+    <div class="container">
+      <h2>Our Journey</h2>
+      <div class="journey-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; width: 100%; max-width: 1000px; margin-top: 3rem;">
+        <div class="history" style="text-align: left;">
+          <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators. Focusing exclusively on JavaScript-powered experiences.</p>
+          <p>Our mission: <em>“To help your business grow online with your Satisfaction”</em></p>
+        </div>
+
+        <div>
+          <h3>Our Projects</h3>
+          <div class="projects-grid">
+            <div class="project-card">
+              <img src="wedding-stage-decoration-with-flowers.jpg" alt="Yadhra Wedding Decor" class="project-img">
+              <div class="project-content">
+                <h3>Yadhra Wedding Decor</h3>
+                <p>Comprehensive wedding services: stage decor, lighting, kolam, aarathi plates & catering — transforming dreams into reality.</p>
+                <a href="https://yadhramanagement.netlify.app/" class="visit-site-btn" target="_blank">
+                  <i class="fas fa-external-link-alt"></i> Visit Site
+                </a>
+              </div>
+            </div>
+            <div class="project-card">
+              <img src="vajrastras img.jpg" alt="Vajrastras Silambam Academy" class="project-img">
+              <div class="project-content">
+                <h3>Vajrastras Silambam Academy</h3>
+                <p>Traditional Tamil martial arts training — building discipline, strength & cultural pride for all ages since 2024.</p>
+                <a href="https://vajrastrasacademy.vercel.app/" class="visit-site-btn" target="_blank">
+                  <i class="fas fa-external-link-alt"></i> Visit Site
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section — Uniform Grid (3 cards) -->
+  <section id="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <p>We turn ideas into high-performance web experiences — built with clean, maintainable code.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h3>Frontend Development</h3>
+          <p>Pixel-perfect, high-speed interfaces built with modern HTML, CSS, and JavaScript — optimized for performance and SEO.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Responsive Design</h3>
+          <p>Flawless UX across all devices — mobile-first, accessibility-compliant, and tested on real hardware.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+          <h3>UI/UX Enhancement</h3>
+          <p>User-centered redesigns that boost engagement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2>About Dwaitz</h2>
+      <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators. Focusing exclusively on JavaScript-powered experiences.</p>
+      <p>(Dwaitz) - <em>“Development of Work in AI Technology”</em></p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Reach out anytime—we’re here to help you move your project forward.</p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> officialdwaitz@gmail.com</p>
+          <p><i class="fas fa-phone"></i> +91 9629546597</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/dwaitzofficial" target="_blank" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot UI -->
+  <div id="chatbot" role="region" aria-label="Chat with Dwaitz AI">
+    <div id="chat-header">
+      <span>💬 Ask Dwaitz</span>
+      <span id="chat-close" style="cursor: pointer; font-size: 1.25rem;" aria-label="Close chat">✕</span>
+    </div>
+    <div id="chat-messages" role="log" aria-live="polite">
+      <div class="message bot">Hi there! I’m Dwaitz AI. Ask me about our <strong>services</strong>, <strong>projects</strong>, or how to get in touch.</div>
+    </div>
+    <div id="chat-input">
+      <input type="text" id="user-input" placeholder="Type your question..." autocomplete="off" aria-label="Type your message" />
+      <button id="send-btn" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('navLinks');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    // Chatbot
+    const chatMessages = document.getElementById('chat-messages');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const chatbot = document.getElementById('chatbot');
+    const chatToggle = document.getElementById('chatbot-toggle');
+    const chatClose = document.getElementById('chat-close');
+
+    if (chatToggle) {
+      chatToggle.addEventListener('click', () => {
+        chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+        if (chatbot.style.display === 'flex' && userInput) {
+          setTimeout(() => userInput.focus(), 100);
+        }
+      });
+    }
+
+    if (chatClose) {
+      chatClose.addEventListener('click', () => {
+        chatbot.style.display = 'none';
+      });
+    }
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.classList.add('message', sender);
+      msg.innerHTML = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getBotResponse(input) {
+      const q = input.toLowerCase().trim();
+      if (/(service|what do you do)/.test(q)) 
+        return "We specialize in frontend development: responsive websites, UI/UX improvements, and performance optimization — all with modern HTML/CSS/JS.";
+      
+      if (/(project|portfolio|showcase|work)/.test(q)) 
+        return "Featured projects include <strong>Yadhra Wedding Decor</strong> (full wedding services) and <strong>Vajrastras Silambam Academy</strong> (Tamil martial arts training).";
+
+      if (/(contact|email|reach out)/.test(q)) 
+        return "You can reach us at <strong>officialdwaitz@gmail.com</strong> or call <strong>+91 9629546597</strong>. We respond within 24 hours.";
+
+      if (/^(hi|hello|hey)/.test(q)) 
+        return "Hello! How can I help?";
+
+      if (/(price|charge|cost)/.test(q)) 
+        return "Pricing is project-based. Contact us for a custom quote based on scope and timeline.";
+
+      if (/(located|address|where are you)/.test(q)) 
+        return "The founder is from Virudhunagar and currently studying at Sri Krishna College of Technology, Coimbatore.";
+
+      if (/(experience|how long)/.test(q)) 
+        return "We have 3 years of experience in frontend development.";
+
+      if (/(time|days|delivery)/.test(q)) 
+        return "Projects are delivered within 24 hours to 2 days — depending on complexity.";
+
+      if (/(founder|surya)/.test(q)) 
+        return "Surya R is the founder of Dwaitz — a software agency delivering web solutions.";
+
+      return "I’m not sure I understood. Try asking about our <strong>services</strong>, <strong>projects</strong>, or <strong>contact info</strong>.";
+    }
+
+    function sendMessage() {
+      if (!userInput || !chatMessages) return;
+      const text = userInput.value.trim();
+      if (!text) return;
+
+      addMessage(text, 'user');
+      userInput.value = '';
+      userInput.disabled = true;
+      if (sendBtn) sendBtn.disabled = true;
+
+      const typing = document.createElement('div');
+      typing.classList.add('message', 'bot');
+      typing.innerHTML = 'Dwaitz is typing<span class="typing"></span><span class="typing" style="animation-delay:0.2s"></span><span class="typing" style="animation-delay:0.4s"></span>';
+      chatMessages.appendChild(typing);
+
+      setTimeout(() => {
+        typing.remove();
+        const response = getBotResponse(text);
+        addMessage(response, 'bot');
+        userInput.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
+        userInput.focus();
+      }, 1000);
+    }
+
+    if (sendBtn) {
+      sendBtn.addEventListener('click', sendMessage);
+    }
+    if (userInput) {
+      userInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') sendMessage();
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
