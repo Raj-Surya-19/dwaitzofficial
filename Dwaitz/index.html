@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Dwaitz | Professional Web Development</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -104,6 +104,7 @@
       cursor: pointer;
       border: none;
       text-align: center;
+      touch-action: manipulation;
     }
 
     .btn-outline {
@@ -112,9 +113,10 @@
       color: var(--text-light);
     }
 
-    .btn:hover {
+    .btn:hover, .btn:focus {
       transform: translateY(-2px);
       box-shadow: var(--shadow);
+      outline: none;
     }
 
     /* Navigation */
@@ -152,6 +154,7 @@
       font-size: 1rem;
       position: relative;
       padding: 0.5rem 0;
+      touch-action: manipulation;
     }
 
     .nav-links a::after {
@@ -165,7 +168,8 @@
       transition: width 0.3s ease;
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
       width: 100%;
     }
 
@@ -177,6 +181,7 @@
       width: 30px;
       height: 21px;
       justify-content: space-between;
+      touch-action: manipulation;
     }
 
     .bar {
@@ -190,7 +195,7 @@
     /* ✅ Mobile-Optimized Project Cards */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       margin-top: 2.5rem;
       width: 100%;
@@ -199,7 +204,7 @@
     .project-card {
       position: relative;
       background: var(--bg-light);
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
       box-shadow: var(--shadow);
       transition: var(--transition);
@@ -226,20 +231,20 @@
 
     .project-img {
       width: 100%;
-      height: 220px;
+      height: 200px;
       object-fit: cover;
       display: block;
     }
 
     .project-content {
-      padding: 1.75rem 1.5rem 1.5rem;
+      padding: 1.5rem;
       text-align: center;
     }
 
     .project-content h3 {
       color: var(--text-dark);
       margin: 0 0 0.75rem;
-      font-size: 1.4rem;
+      font-size: 1.35rem;
     }
 
     .project-content p {
@@ -255,7 +260,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.6rem;
+      padding: 0.75rem 1.5rem;
       background: var(--accent);
       color: var(--text-light);
       text-decoration: none;
@@ -264,18 +269,19 @@
       margin: 0.5rem 0;
       transition: var(--transition);
       font-size: 1rem;
+      touch-action: manipulation;
     }
 
-    .visit-site-btn:hover {
+    .visit-site-btn:hover, .visit-site-btn:focus {
       background: #333;
       transform: translateY(-2px);
       box-shadow: var(--shadow);
     }
 
-    /* ✅ Uniform Services Cards (3 items) */
+    /* ✅ Uniform Services Cards */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2rem;
       margin-top: 2.5rem;
       width: 100%;
@@ -285,8 +291,8 @@
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-radius: 22px;
-      padding: 2rem;
+      border-radius: 20px;
+      padding: 1.75rem;
       text-align: center;
       color: var(--text-light);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
@@ -295,44 +301,33 @@
       transform: translateY(0);
       position: relative;
       overflow: hidden;
-      height: 380px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-      pointer-events: none;
+      justify-content: space-between;
+      height: 100%;
     }
 
     .service-card:hover {
-      transform: translateY(-10px) scale(1.015);
+      transform: translateY(-8px) scale(1.01);
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
       background: rgba(255, 255, 255, 0.12);
     }
 
     .service-icon {
-      font-size: 2.2rem;
-      width: 72px;
-      height: 72px;
+      font-size: 2rem;
+      width: 64px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
       margin: 0 auto 1.25rem;
       color: var(--text-light);
     }
 
     .service-card h3 {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 700;
       margin-bottom: 1rem;
       color: var(--text-light);
@@ -355,6 +350,7 @@
       margin-top: auto;
       position: relative;
       padding-right: 1.25rem;
+      touch-action: manipulation;
     }
 
     .service-cta::after {
@@ -366,7 +362,7 @@
       transition: var(--transition);
     }
 
-    .service-cta:hover::after {
+    .service-cta:hover::after, .service-cta:focus::after {
       opacity: 1;
       transform: translateX(0);
     }
@@ -395,6 +391,7 @@
 
     .contact-info i {
       color: var(--text-dark);
+      margin-right: 0.5rem;
     }
 
     .social-links a {
@@ -408,15 +405,16 @@
       justify-content: center;
       margin: 0 0.5rem;
       transition: var(--transition);
+      touch-action: manipulation;
     }
 
-    .social-links a:hover {
+    .social-links a:hover, .social-links a:focus {
       background: var(--text-dark);
       color: var(--text-light);
       transform: translateY(-3px);
     }
 
-    /* Chatbot */
+    /* ✅ Chatbot — Mobile-First */
     #chatbot-toggle {
       position: fixed;
       bottom: 2rem;
@@ -434,9 +432,11 @@
       box-shadow: var(--shadow);
       z-index: 1002;
       transition: var(--transition);
+      touch-action: manipulation;
+      outline: none;
     }
 
-    #chatbot-toggle:hover {
+    #chatbot-toggle:hover, #chatbot-toggle:focus {
       transform: scale(1.12) rotate(12deg);
     }
 
@@ -444,8 +444,8 @@
       position: fixed;
       bottom: 90px;
       right: 2rem;
-      width: 350px;
-      height: 500px;
+      width: 340px;
+      height: 480px;
       background-color: var(--bg-light);
       border-radius: 16px;
       box-shadow: var(--shadow-lg);
@@ -453,6 +453,7 @@
       flex-direction: column;
       z-index: 1003;
       color: var(--text-dark);
+      overflow: hidden;
     }
 
     #chat-header {
@@ -472,6 +473,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+      background: #fff;
     }
 
     .message {
@@ -481,6 +483,7 @@
       position: relative;
       animation: fadeIn 0.3s ease;
       font-size: 0.95rem;
+      word-wrap: break-word;
     }
 
     @keyframes fadeIn {
@@ -531,6 +534,7 @@
       color: #333;
       outline: none;
       font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
     }
 
     #chat-input button {
@@ -545,10 +549,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      touch-action: manipulation;
     }
 
-    /* 📱 Mobile Responsive — Projects & Layout */
+    #chat-input button:hover, #chat-input button:focus {
+      opacity: 0.9;
+    }
+
+    /* 📱 Mobile Responsive */
     @media (max-width: 768px) {
+      section { padding: 3rem 1.5rem; }
+
+      h1 { font-size: 2.3rem; }
+      h2 { font-size: 1.9rem; }
+      h3 { font-size: 1.35rem; }
+      p { font-size: 1rem; }
+
+      /* Mobile Nav */
       .nav-links {
         position: fixed;
         top: 70px;
@@ -560,7 +577,7 @@
         align-items: center;
         justify-content: flex-start;
         padding-top: 2rem;
-        gap: 1.5rem;
+        gap: 1.75rem;
         transition: left 0.4s ease;
         z-index: 1000;
       }
@@ -583,97 +600,97 @@
         transform: rotate(-45deg) translate(6px, -6px);
       }
 
-      h1 { font-size: 2.2rem; }
-      h2 { font-size: 1.8rem; }
-      h3 { font-size: 1.4rem; }
-      section { padding: 2.5rem 1.25rem; }
-
-      p { font-size: 1rem; }
-
-      /* ✅ MOBILE PROJECTS: Single column, full-width */
+      /* Journey Layout */
       .journey-container {
         grid-template-columns: 1fr !important;
-        gap: 2rem !important;
+        gap: 2.5rem !important;
+        text-align: center !important;
       }
 
+      .history {
+        text-align: center !important;
+      }
+
+      /* Projects */
       .projects-grid {
         grid-template-columns: 1fr !important;
-        gap: 1.75rem;
-      }
-
-      .project-card {
-        border-radius: 20px;
       }
 
       .project-img {
-        height: 240px; /* taller for mobile */
+        height: 220px;
       }
 
-      .project-content {
-        padding: 1.5rem 1.25rem;
+      /* Chatbot Mobile Fix */
+      #chatbot {
+        width: calc(100% - 2rem);
+        max-width: 360px;
+        right: 1rem;
+        bottom: 90px;
+        height: 80vh;
+        max-height: 500px;
       }
 
-      .project-content h3 {
-        font-size: 1.35rem;
+      #chat-messages {
+        padding: 0.75rem;
+        font-size: 0.9rem;
       }
 
-      .project-content p {
+      #user-input {
         font-size: 1rem;
-        margin-bottom: 1.25rem;
+        padding: 0.6rem 1rem;
       }
 
-      .visit-site-btn {
-        padding: 0.8rem 1.75rem;
-        font-size: 1.05rem;
+      #chatbot-toggle {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 52px;
+        height: 52px;
+        font-size: 1.1rem;
       }
+    }
 
-      /* Services */
-      .service-card {
-        height: auto;
-        padding: 1.75rem;
-      }
-
-      .service-icon {
-        width: 68px;
-        height: 68px;
-        font-size: 2rem;
-      }
+    @media (max-width: 480px) {
+      section { padding: 2.5rem 1rem; }
+      h1 { font-size: 2rem; }
+      .btn { padding: 0.75rem 1.75rem; font-size: 0.95rem; }
+      .service-icon { width: 60px; height: 60px; font-size: 1.8rem; }
+      .project-content h3 { font-size: 1.25rem; }
     }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <nav>
-    <a href="#home" class="logo">Dwaitz</a>
+  <nav aria-label="Main Navigation">
+    <a href="#home" class="logo" aria-label="Dwaitz Home">Dwaitz</a>
     <div class="nav-links" id="navLinks">
       <a href="#home">Home</a>
       <a href="#services">Services</a>
       <a href="#journey">Our Work</a>
       <a href="#contact">Contact</a>
     </div>
-    <div id="menu-toggle">
+    <div id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
   </nav>
 
-  <div id="chatbot-toggle" aria-label="Open chat"><i class="fas fa-robot"></i></div>
+  <button id="chatbot-toggle" aria-label="Open chat with Dwaitz AI"><i class="fas fa-robot"></i></button>
 
   <!-- Home Section -->
-  <section id="home">
+  <section id="home" aria-labelledby="home-heading">
     <div class="container"><br><br><br><br><br>
-      <h1>Dwaitz — We Build Responsive Front-End Websites with SEO</h1>
+      <h1 id="home-heading">Dwaitz — We Build Responsive Front-End Websites with SEO</h1>
       <p class="hero-sub">A JavaScript-Driven Web Development Agency delivering modern, high-performance websites.</p>
       <a href="#services" class="btn btn-outline">View Our Services</a>
     </div>
   </section>
 
   <!-- Our Journey & Projects Section -->
-  <section id="journey">
+  <section id="journey" aria-labelledby="journey-heading">
     <div class="container">
-      <h2>Our Journey</h2>
+      <h2 id="journey-heading">Our Journey</h2>
       <div class="journey-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; width: 100%; max-width: 1000px; margin-top: 3rem;">
         <div class="history" style="text-align: left;">
           <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators. Focusing exclusively on JavaScript-powered experiences.</p>
@@ -684,21 +701,21 @@
           <h3>Our Projects</h3>
           <div class="projects-grid">
             <div class="project-card">
-              <img src="wedding-stage-decoration-with-flowers.jpg" alt="Yadhra Wedding Decor" class="project-img">
+              <img src="wedding-stage-decoration-with-flowers.jpg" alt="Yadhra Wedding Decor – Stage with floral arch and elegant lighting" class="project-img">
               <div class="project-content">
                 <h3>Yadhra Wedding Decor</h3>
                 <p>Comprehensive wedding services: stage decor, lighting, kolam, aarathi plates & catering — transforming dreams into reality.</p>
-                <a href="https://yadhramanagement.netlify.app/" class="visit-site-btn" target="_blank">
+                <a href="https://yadhramanagement.netlify.app/" class="visit-site-btn" target="_blank" rel="noopener">
                   <i class="fas fa-external-link-alt"></i> Visit Site
                 </a>
               </div>
             </div>
             <div class="project-card">
-              <img src="vajrastras img.jpg" alt="Vajrastras Silambam Academy" class="project-img">
+              <img src="vajrastras img.jpg" alt="Vajrastras Silambam Academy – students in traditional martial arts training" class="project-img">
               <div class="project-content">
                 <h3>Vajrastras Silambam Academy</h3>
                 <p>Traditional Tamil martial arts training — building discipline, strength & cultural pride for all ages since 2024.</p>
-                <a href="https://vajrastrasacademy.vercel.app/" class="visit-site-btn" target="_blank">
+                <a href="https://vajrastrasacademy.vercel.app/" class="visit-site-btn" target="_blank" rel="noopener">
                   <i class="fas fa-external-link-alt"></i> Visit Site
                 </a>
               </div>
@@ -709,10 +726,10 @@
     </div>
   </section>
 
-  <!-- Services Section — Uniform Grid (3 cards) -->
-  <section id="services">
+  <!-- Services Section -->
+  <section id="services" aria-labelledby="services-heading">
     <div class="container">
-      <h2>Our Services</h2>
+      <h2 id="services-heading">Our Services</h2>
       <p>We turn ideas into high-performance web experiences — built with clean, maintainable code.</p>
 
       <div class="services-grid">
@@ -729,46 +746,44 @@
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
           <h3>UI/UX Enhancement</h3>
-          <p>User-centered redesigns that boost engagement.</p>
+          <p>User-centered redesigns that boost engagement and conversion through intuitive interaction.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about">
+  <section id="about" aria-labelledby="about-heading">
     <div class="container">
-      <h2>About Dwaitz</h2>
-      <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators. Focusing exclusively on JavaScript-powered experiences.</p>
+      <h2 id="about-heading">About Dwaitz</h2>
+      <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators.</p>
       <p>(Dwaitz) - <em>“Development of Work in AI Technology”</em></p>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact">
+  <section id="contact" aria-labelledby="contact-heading">
     <div class="container">
-      <h2>Contact Us</h2>
+      <h2 id="contact-heading">Contact Us</h2>
       <p>Reach out anytime—we’re here to help you move your project forward.</p>
 
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p><i class="fas fa-envelope"></i> officialdwaitz@gmail.com</p>
-          <p><i class="fas fa-phone"></i> +91 9629546597</p>
-          <div class="social-links">
-            <a href="https://www.instagram.com/dwaitzofficial" target="_blank" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-          </div>
+      <div class="contact-info" style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+        <p><i class="fas fa-envelope"></i> officialdwaitz@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +91 9629546597</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/dwaitzofficial" target="_blank" rel="noopener" aria-label="Dwaitz on Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Chatbot UI -->
-  <div id="chatbot" role="region" aria-label="Chat with Dwaitz AI">
+  <div id="chatbot" role="dialog" aria-labelledby="chat-header" aria-modal="true">
     <div id="chat-header">
       <span>💬 Ask Dwaitz</span>
-      <span id="chat-close" style="cursor: pointer; font-size: 1.25rem;" aria-label="Close chat">✕</span>
+      <button id="chat-close" aria-label="Close chat">×</button>
     </div>
     <div id="chat-messages" role="log" aria-live="polite">
       <div class="message bot">Hi there! I’m Dwaitz AI. Ask me about our <strong>services</strong>, <strong>projects</strong>, or how to get in touch.</div>
@@ -786,12 +801,15 @@
 
     if (menuToggle && navLinks) {
       menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
         menuToggle.classList.toggle('active');
         navLinks.classList.toggle('active');
       });
 
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
+          menuToggle.setAttribute('aria-expanded', 'false');
           menuToggle.classList.remove('active');
           navLinks.classList.remove('active');
         });
@@ -808,9 +826,13 @@
 
     if (chatToggle) {
       chatToggle.addEventListener('click', () => {
-        chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
-        if (chatbot.style.display === 'flex' && userInput) {
-          setTimeout(() => userInput.focus(), 100);
+        const isVisible = chatbot.style.display === 'flex';
+        chatbot.style.display = isVisible ? 'none' : 'flex';
+        chatToggle.setAttribute('aria-expanded', !isVisible);
+        if (!isVisible && userInput) {
+          setTimeout(() => {
+            userInput.focus();
+          }, 200);
         }
       });
     }
@@ -818,13 +840,14 @@
     if (chatClose) {
       chatClose.addEventListener('click', () => {
         chatbot.style.display = 'none';
+        chatToggle.setAttribute('aria-expanded', 'false');
       });
     }
 
     function addMessage(text, sender) {
       const msg = document.createElement('div');
       msg.classList.add('message', sender);
-      msg.innerHTML = text;
+      msg.innerHTML = text.replace(/\n/g, '<br>');
       chatMessages.appendChild(msg);
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
@@ -844,7 +867,7 @@
         return "Hello! How can I help?";
 
       if (/(price|charge|cost|budget|high|low)/.test(q)) 
-        return "Pricing is project-based. Contact us for a custom quote based on scope and timeline.Our prices start from ₹2,000 for basic websites to ₹20,000 for premium websites(advanced features).";
+        return "Pricing is project-based. Contact us for a custom quote. Our prices start from ₹2,000 for basic websites to ₹20,000 for premium ones.";
 
       if (/(located|address|where are you)/.test(q)) 
         return "The founder is from Virudhunagar and currently studying at Sri Krishna College of Technology, Coimbatore.";
@@ -852,23 +875,23 @@
       if (/(experience|how long)/.test(q)) 
         return "We have 3 years of experience in frontend development.";
 
-      if (/(need a website| need a project|SaaS|app|A business website.)/.test(q)) 
-        return "Absolutely! We build fast, responsive, and SEO-friendly websites. To get started, may I know your business type and the features you need?.";
+      if (/(need a website|need a project|SaaS|app|business website)/.test(q)) 
+        return "Absolutely! We build fast, responsive, and SEO-friendly websites. To get started, may I know your business type and the features you need?";
 
       if (/(time|days|delivery)/.test(q)) 
         return "Projects are delivered within 24 hours to 7 days — depending on complexity.";
       
-      if (/(My budget is low)/.test(q)) 
-        return "No problem! We offer flexible packages.Could you share your budget range so I can suggest the best solution within it?.";
+      if (/(low budget|budget is low)/.test(q)) 
+        return "No problem! We offer flexible packages. Could you share your budget range so I can suggest the best solution?";
 
-      if (/(After completing the website, who will maintain it?)/.test(q)) 
+      if (/(maintenance|who will maintain|after completion)/.test(q)) 
         return "We offer monthly and yearly maintenance plans including updates, backups, speed optimization, and security fixes.";
 
       if (/(founder|surya)/.test(q)) 
         return "Surya R is the founder of Dwaitz — a software agency delivering web solutions.";
       
-      if (/(Tell me about your agency.)/.test(q)) 
-        return "We are Dwaitz, a modern software & web development agency.We build websites, mobile apps, dashboards, and AI-powered solutions.Would you like to see our recent projects?";
+      if (/(Tell me about your agency|about dwaitz)/.test(q)) 
+        return "We are Dwaitz, a modern software & web development agency. We build websites, mobile apps, dashboards, and AI-powered solutions. Would you like to see our recent projects?";
       
       return "I’m not sure I understood. Try asking about our <strong>services</strong>, <strong>projects</strong>, or <strong>contact info</strong>.";
     }
@@ -903,11 +926,14 @@
     }
     if (userInput) {
       userInput.addEventListener('keypress', e => {
-        if (e.key === 'Enter') sendMessage();
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendMessage();
+        }
       });
     }
 
-    // Smooth scroll
+    // Smooth scroll with offset for fixed nav
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -915,15 +941,24 @@
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
+          const offset = 80;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset;
           window.scrollTo({
-            top: target.offsetTop - 80,
+            top: y,
             behavior: 'smooth'
           });
         }
       });
     });
+
+    // Close chatbot on Esc
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && chatbot.style.display === 'flex') {
+        chatbot.style.display = 'none';
+        chatToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   </script>
 
 </body>
 </html>
-
