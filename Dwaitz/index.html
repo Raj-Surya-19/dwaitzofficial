@@ -192,7 +192,7 @@
       transition: var(--transition);
     }
 
-    /* ✅ Mobile-Optimized Project Cards */
+    /* Project Cards */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -278,7 +278,7 @@
       box-shadow: var(--shadow);
     }
 
-    /* ✅ Uniform Services Cards */
+    /* Services */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -304,7 +304,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 100%;
     }
 
     .service-card:hover {
@@ -367,7 +366,7 @@
       transform: translateX(0);
     }
 
-    /* Contact Section */
+    /* Contact */
     #contact {
       background-color: var(--bg-light);
       color: var(--text-dark);
@@ -414,7 +413,7 @@
       transform: translateY(-3px);
     }
 
-    /* ✅ Chatbot — Mobile-First */
+    /* ✅ Chatbot — with Send Button */
     #chatbot-toggle {
       position: fixed;
       bottom: 2rem;
@@ -550,22 +549,19 @@
       align-items: center;
       justify-content: center;
       touch-action: manipulation;
+      font-size: 14px;
     }
 
     #chat-input button:hover, #chat-input button:focus {
       opacity: 0.9;
+      outline: none;
     }
 
-    /* 📱 Mobile Responsive */
+    /* Mobile */
     @media (max-width: 768px) {
       section { padding: 3rem 1.5rem; }
-
       h1 { font-size: 2.3rem; }
       h2 { font-size: 1.9rem; }
-      h3 { font-size: 1.35rem; }
-      p { font-size: 1rem; }
-
-      /* Mobile Nav */
       .nav-links {
         position: fixed;
         top: 70px;
@@ -574,53 +570,21 @@
         height: calc(100vh - 70px);
         background-color: var(--bg-dark);
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
         padding-top: 2rem;
         gap: 1.75rem;
         transition: left 0.4s ease;
-        z-index: 1000;
       }
+      .nav-links.active { left: 0; }
+      #menu-toggle { display: flex; }
+      #menu-toggle.active .bar:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+      #menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+      #menu-toggle.active .bar:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-      .nav-links.active {
-        left: 0;
-      }
+      .journey-container { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+      .projects-grid { grid-template-columns: 1fr !important; }
+      .project-img { height: 220px; }
 
-      #menu-toggle {
-        display: flex;
-      }
-
-      #menu-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-      }
-      #menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-      }
-      #menu-toggle.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-      }
-
-      /* Journey Layout */
-      .journey-container {
-        grid-template-columns: 1fr !important;
-        gap: 2.5rem !important;
-        text-align: center !important;
-      }
-
-      .history {
-        text-align: center !important;
-      }
-
-      /* Projects */
-      .projects-grid {
-        grid-template-columns: 1fr !important;
-      }
-
-      .project-img {
-        height: 220px;
-      }
-
-      /* Chatbot Mobile Fix */
+      /* Chatbot Mobile */
       #chatbot {
         width: calc(100% - 2rem);
         max-width: 360px;
@@ -629,38 +593,20 @@
         height: 80vh;
         max-height: 500px;
       }
-
-      #chat-messages {
-        padding: 0.75rem;
-        font-size: 0.9rem;
-      }
-
-      #user-input {
-        font-size: 1rem;
-        padding: 0.6rem 1rem;
-      }
-
-      #chatbot-toggle {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 52px;
-        height: 52px;
-        font-size: 1.1rem;
-      }
+      #chat-messages { padding: 0.75rem; font-size: 0.9rem; }
+      #chat-input input { font-size: 1rem; padding: 0.6rem 1rem; }
+      #chatbot-toggle { bottom: 1.5rem; right: 1.5rem; width: 52px; height: 52px; font-size: 1.1rem; }
     }
 
     @media (max-width: 480px) {
       section { padding: 2.5rem 1rem; }
       h1 { font-size: 2rem; }
       .btn { padding: 0.75rem 1.75rem; font-size: 0.95rem; }
-      .service-icon { width: 60px; height: 60px; font-size: 1.8rem; }
-      .project-content h3 { font-size: 1.25rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav aria-label="Main Navigation">
     <a href="#home" class="logo" aria-label="Dwaitz Home">Dwaitz</a>
     <div class="nav-links" id="navLinks">
@@ -678,7 +624,6 @@
 
   <button id="chatbot-toggle" aria-label="Open chat with Dwaitz AI"><i class="fas fa-robot"></i></button>
 
-  <!-- Home Section -->
   <section id="home" aria-labelledby="home-heading">
     <div class="container"><br><br><br><br><br>
       <h1 id="home-heading">Dwaitz — We Build Responsive Front-End Websites with SEO</h1>
@@ -687,34 +632,32 @@
     </div>
   </section>
 
-  <!-- Our Journey & Projects Section -->
   <section id="journey" aria-labelledby="journey-heading">
     <div class="container">
       <h2 id="journey-heading">Our Journey</h2>
       <div class="journey-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; width: 100%; max-width: 1000px; margin-top: 3rem;">
-        <div class="history" style="text-align: left;">
-          <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators. Focusing exclusively on JavaScript-powered experiences.</p>
+        <div class="history">
+          <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators.</p>
           <p>Our mission: <em>“To help your business grow online with your Satisfaction”</em></p>
         </div>
-
         <div>
           <h3>Our Projects</h3>
           <div class="projects-grid">
             <div class="project-card">
-              <img src="wedding-stage-decoration-with-flowers.jpg" alt="Yadhra Wedding Decor – Stage with floral arch and elegant lighting" class="project-img">
+              <img src="wedding-stage-decoration-with-flowers.jpg" alt="Yadhra Wedding Decor – elegant stage with florals" class="project-img">
               <div class="project-content">
                 <h3>Yadhra Wedding Decor</h3>
-                <p>Comprehensive wedding services: stage decor, lighting, kolam, aarathi plates & catering — transforming dreams into reality.</p>
+                <p>Comprehensive wedding services: stage decor, lighting, kolam, aarathi plates & catering.</p>
                 <a href="https://yadhramanagement.netlify.app/" class="visit-site-btn" target="_blank" rel="noopener">
                   <i class="fas fa-external-link-alt"></i> Visit Site
                 </a>
               </div>
             </div>
             <div class="project-card">
-              <img src="vajrastras img.jpg" alt="Vajrastras Silambam Academy – students in traditional martial arts training" class="project-img">
+              <img src="vajrastras img.jpg" alt="Vajrastras Silambam Academy – traditional martial arts training" class="project-img">
               <div class="project-content">
                 <h3>Vajrastras Silambam Academy</h3>
-                <p>Traditional Tamil martial arts training — building discipline, strength & cultural pride for all ages since 2024.</p>
+                <p>Traditional Tamil martial arts training — building discipline, strength & cultural pride.</p>
                 <a href="https://vajrastrasacademy.vercel.app/" class="visit-site-btn" target="_blank" rel="noopener">
                   <i class="fas fa-external-link-alt"></i> Visit Site
                 </a>
@@ -726,52 +669,47 @@
     </div>
   </section>
 
-  <!-- Services Section -->
   <section id="services" aria-labelledby="services-heading">
     <div class="container">
       <h2 id="services-heading">Our Services</h2>
       <p>We turn ideas into high-performance web experiences — built with clean, maintainable code.</p>
-
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-code"></i></div>
           <h3>Frontend Development</h3>
-          <p>Pixel-perfect, high-speed interfaces built with modern HTML, CSS, and JavaScript — optimized for performance and SEO.</p>
+          <p>Pixel-perfect, high-speed interfaces with HTML, CSS, JS — SEO & performance optimized.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
           <h3>Responsive Design</h3>
-          <p>Flawless UX across all devices — mobile-first, accessibility-compliant, and tested on real hardware.</p>
+          <p>Flawless UX across all devices — mobile-first, accessibility-compliant.</p>
         </div>
         <div class="service-card">
           <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
           <h3>UI/UX Enhancement</h3>
-          <p>User-centered redesigns that boost engagement and conversion through intuitive interaction.</p>
+          <p>User-centered redesigns that boost engagement and conversion.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
   <section id="about" aria-labelledby="about-heading">
     <div class="container">
       <h2 id="about-heading">About Dwaitz</h2>
-      <p><strong>2025:</strong> Founded by Surya R as a solo freelancer — building responsive websites for local startups and creators.</p>
+      <p><strong>2025:</strong> Founded by Surya R — building responsive websites with JavaScript.</p>
       <p>(Dwaitz) - <em>“Development of Work in AI Technology”</em></p>
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" aria-labelledby="contact-heading">
     <div class="container">
       <h2 id="contact-heading">Contact Us</h2>
-      <p>Reach out anytime—we’re here to help you move your project forward.</p>
-
+      <p>Reach out anytime—we’re here to help.</p>
       <div class="contact-info" style="display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1.5rem;">
         <p><i class="fas fa-envelope"></i> officialdwaitz@gmail.com</p>
         <p><i class="fas fa-phone"></i> +91 9629546597</p>
         <div class="social-links">
-          <a href="https://www.instagram.com/dwaitzofficial" target="_blank" rel="noopener" aria-label="Dwaitz on Instagram">
+          <a href="https://www.instagram.com/dwaitzofficial" target="_blank" rel="noopener" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
         </div>
@@ -779,10 +717,10 @@
     </div>
   </section>
 
-  <!-- Chatbot UI -->
-  <div id="chatbot" role="dialog" aria-labelledby="chat-header" aria-modal="true">
+  <!-- ✅ Chatbot with Send Button -->
+  <div id="chatbot" role="dialog" aria-labelledby="chatbot-title" aria-modal="true">
     <div id="chat-header">
-      <span>💬 Ask Dwaitz</span>
+      <span id="chatbot-title">💬 Ask Dwaitz</span>
       <button id="chat-close" aria-label="Close chat">×</button>
     </div>
     <div id="chat-messages" role="log" aria-live="polite">
@@ -795,10 +733,9 @@
   </div>
 
   <script>
-    // Mobile Menu Toggle
+    // Mobile Menu
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.getElementById('navLinks');
-
     if (menuToggle && navLinks) {
       menuToggle.addEventListener('click', () => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -806,7 +743,6 @@
         menuToggle.classList.toggle('active');
         navLinks.classList.toggle('active');
       });
-
       document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
           menuToggle.setAttribute('aria-expanded', 'false');
@@ -824,26 +760,6 @@
     const chatToggle = document.getElementById('chatbot-toggle');
     const chatClose = document.getElementById('chat-close');
 
-    if (chatToggle) {
-      chatToggle.addEventListener('click', () => {
-        const isVisible = chatbot.style.display === 'flex';
-        chatbot.style.display = isVisible ? 'none' : 'flex';
-        chatToggle.setAttribute('aria-expanded', !isVisible);
-        if (!isVisible && userInput) {
-          setTimeout(() => {
-            userInput.focus();
-          }, 200);
-        }
-      });
-    }
-
-    if (chatClose) {
-      chatClose.addEventListener('click', () => {
-        chatbot.style.display = 'none';
-        chatToggle.setAttribute('aria-expanded', 'false');
-      });
-    }
-
     function addMessage(text, sender) {
       const msg = document.createElement('div');
       msg.classList.add('message', sender);
@@ -856,55 +772,39 @@
       const q = input.toLowerCase().trim();
       if (/(service|what do you do)/.test(q)) 
         return "We specialize in frontend development: responsive websites, UI/UX improvements, and performance optimization — all with modern HTML/CSS/JS.";
-      
       if (/(project|portfolio|showcase|work)/.test(q)) 
-        return "Featured projects include <strong>Yadhra Wedding Decor</strong> (full wedding services) and <strong>Vajrastras Silambam Academy</strong> (Tamil martial arts training).";
-
-      if (/(contact|email|reach out|discuss)/.test(q)) 
-        return "You can reach us at <strong>officialdwaitz@gmail.com</strong> or call <strong>+91 9629546597</strong>. We respond within a hour.";
-
+        return `<strong>Yadhra Wedding Decor</strong>: Full-service wedding planning.<br><strong>Vajrastras Silambam Academy</strong>: Traditional Tamil martial arts training.`;
+      if (/(contact|email|reach out)/.test(q)) 
+        return "📧 <strong>officialdwaitz@gmail.com</strong><br>📞 <strong>+91 9629546597</strong>";
       if (/^(hi|hello|hey)/.test(q)) 
         return "Hello! How can I help?";
-
-      if (/(price|charge|cost|budget|high|low)/.test(q)) 
-        return "Pricing is project-based. Contact us for a custom quote. Our prices start from ₹2,000 for basic websites to ₹20,000 for premium ones.";
-
-      if (/(located|address|where are you)/.test(q)) 
-        return "The founder is from Virudhunagar and currently studying at Sri Krishna College of Technology, Coimbatore.";
-
-      if (/(experience|how long)/.test(q)) 
-        return "We have 3 years of experience in frontend development.";
-
-      if (/(need a website|need a project|SaaS|app|business website)/.test(q)) 
-        return "Absolutely! We build fast, responsive, and SEO-friendly websites. To get started, may I know your business type and the features you need?";
-
-      if (/(time|days|delivery)/.test(q)) 
-        return "Projects are delivered within 24 hours to 7 days — depending on complexity.";
-      
-      if (/(low budget|budget is low)/.test(q)) 
-        return "No problem! We offer flexible packages. Could you share your budget range so I can suggest the best solution?";
-
-      if (/(maintenance|who will maintain|after completion)/.test(q)) 
-        return "We offer monthly and yearly maintenance plans including updates, backups, speed optimization, and security fixes.";
-
+      if (/^(ok|okay|fine|good|best|well done|done)/.test(q)) 
+        return "Yes,to know further details contact us to discuss about your Project.We'll work until you get Satisfied.";
+      if (/(price|cost|budget)/.test(q)) 
+        return "Pricing starts from ₹2,000 (basic) to ₹20,000 (premium). Contact for a custom quote!";
+      if (/(located|address)/.test(q)) 
+        return "Founder based in Virudhunagar; studying at Sri Krishna College of Technology, Coimbatore.";
+      if (/(experience)/.test(q)) 
+        return "3+ years of frontend development experience.";
+      if (/(need a website)/.test(q)) 
+        return "Yes! We build fast, responsive, SEO-friendly websites. Tell us your idea?";
+      if (/(time|delivery)/.test(q)) 
+        return "Delivery: 24 hours (basic) to 7 days (complex projects).";
+      if (/(maintenance)/.test(q)) 
+        return "We offer monthly/yearly maintenance: updates, backups, security, speed.";
       if (/(founder|surya)/.test(q)) 
-        return "Surya R is the founder of Dwaitz — a software agency delivering web solutions.";
-      
-      if (/(Tell me about your agency|about dwaitz)/.test(q)) 
-        return "We are Dwaitz, a modern software & web development agency. We build websites, mobile apps, dashboards, and AI-powered solutions. Would you like to see our recent projects?";
-      
-      return "I’m not sure I understood. Try asking about our <strong>services</strong>, <strong>projects</strong>, or <strong>contact info</strong>.";
+        return "Surya R is the founder of Dwaitz — passionate about web & AI tech.";
+      return "Try asking about <strong>services</strong>, <strong>projects</strong>, or <strong>contact info</strong>.";
     }
 
     function sendMessage() {
-      if (!userInput || !chatMessages) return;
-      const text = userInput.value.trim();
-      if (!text) return;
+      const text = userInput?.value.trim();
+      if (!text || !chatMessages) return;
 
       addMessage(text, 'user');
       userInput.value = '';
       userInput.disabled = true;
-      if (sendBtn) sendBtn.disabled = true;
+      sendBtn.disabled = true;
 
       const typing = document.createElement('div');
       typing.classList.add('message', 'bot');
@@ -916,24 +816,37 @@
         const response = getBotResponse(text);
         addMessage(response, 'bot');
         userInput.disabled = false;
-        if (sendBtn) sendBtn.disabled = false;
+        sendBtn.disabled = false;
         userInput.focus();
       }, 1000);
     }
 
-    if (sendBtn) {
-      sendBtn.addEventListener('click', sendMessage);
-    }
-    if (userInput) {
-      userInput.addEventListener('keypress', e => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          sendMessage();
-        }
+    // ✅ Bind send button & Enter key
+    if (sendBtn) sendBtn.addEventListener('click', sendMessage);
+    if (userInput) userInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // Toggle Chatbot
+    if (chatToggle) {
+      chatToggle.addEventListener('click', () => {
+        chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+        chatToggle.setAttribute('aria-expanded', chatbot.style.display === 'flex');
+        if (chatbot.style.display === 'flex') setTimeout(() => userInput?.focus(), 200);
       });
     }
 
-    // Smooth scroll with offset for fixed nav
+    if (chatClose) {
+      chatClose.addEventListener('click', () => {
+        chatbot.style.display = 'none';
+        chatToggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
@@ -941,17 +854,15 @@
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-          const offset = 80;
-          const y = target.getBoundingClientRect().top + window.scrollY - offset;
           window.scrollTo({
-            top: y,
+            top: target.offsetTop - 80,
             behavior: 'smooth'
           });
         }
       });
     });
 
-    // Close chatbot on Esc
+    // Close chat on Escape
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && chatbot.style.display === 'flex') {
         chatbot.style.display = 'none';
@@ -959,6 +870,5 @@
       }
     });
   </script>
-
 </body>
 </html>
