@@ -843,8 +843,8 @@
       if (/^(hi|hello|hey)/.test(q)) 
         return "Hello! How can I help?";
 
-      if (/(price|charge|cost)/.test(q)) 
-        return "Pricing is project-based. Contact us for a custom quote based on scope and timeline.";
+      if (/(price|charge|cost|budget|high|low)/.test(q)) 
+        return "Pricing is project-based. Contact us for a custom quote based on scope and timeline.Our prices start from ₹2,000 for basic websites to ₹20,000 for premium websites(advanced features).";
 
       if (/(located|address|where are you)/.test(q)) 
         return "The founder is from Virudhunagar and currently studying at Sri Krishna College of Technology, Coimbatore.";
@@ -852,12 +852,24 @@
       if (/(experience|how long)/.test(q)) 
         return "We have 3 years of experience in frontend development.";
 
+      if (/(need a website| need a project|SaaS|app|A business website.)/.test(q)) 
+        return "Absolutely! We build fast, responsive, and SEO-friendly websites. To get started, may I know your business type and the features you need?.";
+
       if (/(time|days|delivery)/.test(q)) 
         return "Projects are delivered within 24 hours to 2 days — depending on complexity.";
+      
+      if (/(My budget is low)/.test(q)) 
+        return "No problem! We offer flexible packages.Could you share your budget range so I can suggest the best solution within it?.";
+
+      if (/(After completing the website, who will maintain it?)/.test(q)) 
+        return "We offer monthly and yearly maintenance plans including updates, backups, speed optimization, and security fixes.";
 
       if (/(founder|surya)/.test(q)) 
         return "Surya R is the founder of Dwaitz — a software agency delivering web solutions.";
-
+      
+      if (/(Tell me about your agency.)/.test(q)) 
+        return "We are Dwaitz, a modern software & web development agency.We build websites, mobile apps, dashboards, and AI-powered solutions.Would you like to see our recent projects?";
+      
       return "I’m not sure I understood. Try asking about our <strong>services</strong>, <strong>projects</strong>, or <strong>contact info</strong>.";
     }
 
