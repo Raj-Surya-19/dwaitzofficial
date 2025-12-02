@@ -772,14 +772,14 @@
       const q = input.toLowerCase().trim();
       if (/(service|what do you do)/.test(q)) 
         return "We specialize in frontend development: responsive websites, UI/UX improvements, and performance optimization — all with modern HTML/CSS/JS.";
-      if (/(project|portfolio|showcase|work)/.test(q)) 
+      if (/(your project|portfolio|showcase| that you have work|tell me about your projects)/.test(q)) 
         return `<strong>Yadhra Wedding Decor</strong>: Full-service wedding planning.<br><strong>Vajrastras Silambam Academy</strong>: Traditional Tamil martial arts training.`;
       if (/(contact|email|reach out)/.test(q)) 
         return "📧 <strong>officialdwaitz@gmail.com</strong><br>📞 <strong>+91 9629546597</strong>";
-      if (/^(hi|hello|hey)/.test(q)) 
-        return "Hello! How can I help?";
+      if (/^(hi|hello|hey|buddy|your name)/.test(q)) 
+        return "I'm Dwaitz AI-Chatbot...Hello! How can I help?";
       if (/^(ok|okay|fine|good|best|well done|done)/.test(q)) 
-        return "Yes,to know further details contact us to discuss about your Project.We'll work until you get Satisfied.";
+        return "Yes,to know about further details contact us to discuss about your Project.We'll work until you get Satisfied and that's our only goal.";
       if (/(price|cost|budget)/.test(q)) 
         return "Pricing starts from ₹2,000 (basic) to ₹20,000 (premium). Contact for a custom quote!";
       if (/(located|address)/.test(q)) 
@@ -794,6 +794,9 @@
         return "We offer monthly/yearly maintenance: updates, backups, security, speed.";
       if (/(founder|surya)/.test(q)) 
         return "Surya R is the founder of Dwaitz — passionate about web & AI tech.";
+      if(/(thats my idea|this is about my project|this is my idea)/.test(q))
+        return "Very excited to know about your idea that's great and hope we will do our best to satisfy your needs";
+      
       return "Try asking about <strong>services</strong>, <strong>projects</strong>, or <strong>contact info</strong>.";
     }
 
@@ -872,3 +875,4 @@
   </script>
 </body>
 </html>
+
